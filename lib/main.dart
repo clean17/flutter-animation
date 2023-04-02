@@ -122,8 +122,6 @@ class MyApp extends StatelessWidget {
 class MyHome3 extends StatefulWidget {
   const MyHome3({super.key});
 
-
-
   @override
   State<MyHome3> createState() => _MyHome3State();
 }
@@ -131,12 +129,14 @@ class MyHome3 extends StatefulWidget {
 class _MyHome3State extends State<MyHome3> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 
+  // late Animation<double> _animation;
+
   @override
   void initState() {
     super.initState();
     _animationController = AnimationController(
       vsync: this, // SingleTickerProviderStateMixin 으로 에러 제거
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 3),
     );
     _animationController.repeat();
   }
@@ -149,38 +149,75 @@ class _MyHome3State extends State<MyHome3> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    const double smallLogo = 100;
-    const double bigLogo = 200;
-
     return Scaffold(
       backgroundColor: Colors.white,
-      body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          final Size biggest = constraints.biggest;
-          return Stack(
-            children: <Widget>[
-              PositionedTransition(
-                rect: RelativeRectTween(
-                  begin: RelativeRect.fromSize(
-                      const Rect.fromLTWH(0, 0, smallLogo, smallLogo), biggest),
-                  end: RelativeRect.fromSize(
-                      Rect.fromLTWH(biggest.width - bigLogo,
-                          biggest.height - bigLogo, bigLogo, bigLogo),
-                      biggest),
-                ).animate(CurvedAnimation(
-                  parent: _animationController,
-                  curve: Curves.elasticInOut,
-                )),
-                child: const Padding(
-                    padding: EdgeInsets.all(8), child: FlutterLogo()),
-              ),
-            ],
-          );
-        },
+      body: Center(
+        child: RotationTransition(
+          turns: CurvedAnimation(
+              parent: _animationController,
+              curve: Curves.ease),
+          child: Container(
+            color: Colors.blue,
+            width: 100,
+            height: 100,
+          ),
+        ),
       ),
     );
   }
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     backgroundColor: Colors.white,
+  //     body: Center(
+  //       child: RotationTransition(
+  //         turns: CurvedAnimation(
+  //             parent: _animationController,
+  //             curve: Curves.ease),
+  //         child: Container(
+  //           color: Colors.blue,
+  //           width: 100,
+  //           height: 100,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }
+    // }  @override
+    // Widget build(BuildContext context) {
+    //   const double smallLogo = 100;
+    //   const double bigLogo = 200;
+    //
+    //   return Scaffold(
+    //     backgroundColor: Colors.white,
+    //     body: LayoutBuilder(
+    //       builder: (BuildContext context, BoxConstraints constraints) {
+    //         final Size biggest = constraints.biggest;
+    //         return Stack(
+    //           children: <Widget>[
+    //             PositionedTransition(
+    //               rect: RelativeRectTween(
+    //                 begin: RelativeRect.fromSize(
+    //                     const Rect.fromLTWH(0, 0, smallLogo, smallLogo), biggest),
+    //                 end: RelativeRect.fromSize(
+    //                     Rect.fromLTWH(biggest.width - bigLogo,
+    //                         biggest.height - bigLogo, bigLogo, bigLogo),
+    //                     biggest),
+    //               ).animate(CurvedAnimation(
+    //                 parent: _animationController,
+    //                 curve: Curves.elasticInOut,
+    //               )),
+    //               child: const Padding(
+    //                   padding: EdgeInsets.all(8), child: FlutterLogo()),
+    //             ),
+    //           ],
+    //         );
+    //       },
+    //     ),
+    //   );
+    // }
+
 
 
 //   @override
