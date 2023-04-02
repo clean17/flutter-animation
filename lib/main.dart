@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHome2(),
+      home: MyHome3(),
     );
   }
 }
@@ -79,14 +79,54 @@ class MyApp extends StatelessWidget {
 //   }
 // }
 
-class MyHome2 extends StatefulWidget {
-  const MyHome2({super.key});
+// class MyHome2 extends StatefulWidget {
+//   const MyHome2({super.key});
+//
+//   @override
+//   State<MyHome2> createState() => _MyHome2State();
+// }
+//
+// class _MyHome2State extends State<MyHome2> with SingleTickerProviderStateMixin {
+//   late AnimationController _animationController;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _animationController = AnimationController(
+//       vsync: this, // SingleTickerProviderStateMixin 으로 에러 제거
+//       duration: const Duration(seconds: 2),
+//     );
+//     _animationController.repeat();
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     Animation<double> _animation =
+//         Tween(begin: 0.0, end: 2.0).animate(_animationController);
+//     return Scaffold(
+//       appBar: AppBar(),
+//       body: Center(
+//         child: ScaleTransition(
+//           scale: _animation,
+//           child: Container(
+//             width: 200,
+//             height: 200,
+//             color: Colors.blue,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+
+class MyHome3 extends StatefulWidget {
+  const MyHome3({super.key});
 
   @override
-  State<MyHome2> createState() => _MyHome2State();
+  State<MyHome3> createState() => _MyHome3State();
 }
 
-class _MyHome2State extends State<MyHome2> with SingleTickerProviderStateMixin {
+class _MyHome3State extends State<MyHome3> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 
   @override
@@ -102,12 +142,12 @@ class _MyHome2State extends State<MyHome2> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     Animation<double> _animation =
-        Tween(begin: 0.0, end: 2.0).animate(_animationController);
+        Tween(begin: 0.0, end: 1.0).animate(_animationController);
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: ScaleTransition(
-          scale: _animation,
+        child: FadeTransition(
+          opacity: _animation,
           child: Container(
             width: 200,
             height: 200,
