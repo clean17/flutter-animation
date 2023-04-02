@@ -122,6 +122,8 @@ class MyApp extends StatelessWidget {
 class MyHome3 extends StatefulWidget {
   const MyHome3({super.key});
 
+
+
   @override
   State<MyHome3> createState() => _MyHome3State();
 }
@@ -140,21 +142,70 @@ class _MyHome3State extends State<MyHome3> with SingleTickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Animation<double> _animation =
-        Tween(begin: 0.0, end: 1.0).animate(_animationController);
+    const double smallLogo = 100;
+    const double bigLogo = 200;
+
     return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: FadeTransition(
-          opacity: _animation,
-          child: Container(
-            width: 200,
-            height: 200,
-            color: Colors.blue,
-          ),
-        ),
+      backgroundColor: Colors.white,
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          final Size biggest = constraints.biggest;
+          return Stack(
+            children: <Widget>[
+              PositionedTransition(
+                rect: RelativeRectTween(
+                  begin: RelativeRect.fromSize(
+                      const Rect.fromLTWH(0, 0, smallLogo, smallLogo), biggest),
+                  end: RelativeRect.fromSize(
+                      Rect.fromLTWH(biggest.width - bigLogo,
+                          biggest.height - bigLogo, bigLogo, bigLogo),
+                      biggest),
+                ).animate(CurvedAnimation(
+                  parent: _animationController,
+                  curve: Curves.elasticInOut,
+                )),
+                child: const Padding(
+                    padding: EdgeInsets.all(8), child: FlutterLogo()),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
 }
+
+
+//   @override
+//   Widget build(BuildContext context) {
+//     // double screenHeight = MediaQuery.of(context).size.height;
+//     double screenWidth = MediaQuery.of(context).size.width;
+//
+//     Animation<RelativeRect> _animation =RelativeRectTween(
+//       begin: RelativeRect.fromLTRB(screenWidth, 0, 0, 0),
+//       end: RelativeRect.fromLTRB(0, 0, 0, 0),
+//     ).animate(CurvedAnimation(
+//       parent: _animationController,
+//       curve: Curves.elasticInOut,
+//     ));
+//
+//     return Scaffold(
+//       body: Stack(
+//           children: [ PositionedTransition(
+//             rect: _animation,
+//             child: Container(
+//               color: Colors.blue,
+//             ),
+//           )
+//           ],
+//       ),
+//     );
+//   }
+// }
