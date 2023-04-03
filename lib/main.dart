@@ -130,7 +130,9 @@ class _MyHome3State extends State<MyHome3> with SingleTickerProviderStateMixin {
 
   // late Animation<double> _animation;
 
-  Widget mWidget = FirstWidget();
+  // Widget mWidget = FirstWidget();
+
+  double myOpacity = 1.0;
 
   @override
   void initState() {
@@ -139,7 +141,17 @@ class _MyHome3State extends State<MyHome3> with SingleTickerProviderStateMixin {
       vsync: this, // SingleTickerProviderStateMixin 으로 에러 제거
       duration: const Duration(seconds: 3),
     );
+    Future.delayed(Duration(seconds: 3), () {
+      change();
+    },
+    );
     _animationController.repeat();
+  }
+
+  void change(){
+    setState(() {
+      myOpacity = 0.2;
+    });
   }
 
   @override
@@ -154,54 +166,59 @@ class _MyHome3State extends State<MyHome3> with SingleTickerProviderStateMixin {
       // backgroundColor: Colors.white,
       body: Center(
           child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AnimatedSwitcher(
-            duration: Duration(seconds: 3),
-            child: mWidget,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  mWidget = SecondWidget();
-                });
-              },
-              child: Text("버튼")),
-        ],
-      )),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AnimatedOpacity(
+                duration: Duration(seconds: 3),
+                opacity: myOpacity,
+                child: Container(
+                  color: Colors.blue,
+                  width: 200,
+                  height: 200,
+                ),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                    });
+                  },
+                  child: Text("버튼")),
+            ],
+          )),
     );
   }
 }
 
-class FirstWidget extends StatelessWidget {
-  const FirstWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue[300],
-      width: 100,
-      height: 100,
-    );
-  }
-}
-
-class SecondWidget extends StatelessWidget {
-  const SecondWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.orange,
-      width: 300,
-      height: 300,
-    );
-  }
-}
+// 스위쳐
+// class FirstWidget extends StatelessWidget {
+//   const FirstWidget({
+//     super.key,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       color: Colors.blue[300],
+//       width: 100,
+//       height: 100,
+//     );
+//   }
+// }
+//
+// class SecondWidget extends StatelessWidget {
+//   const SecondWidget({
+//     super.key,
+//   });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       color: Colors.orange,
+//       width: 300,
+//       height: 300,
+//     );
+//   }
+// }
 
 // 회전하는 애니메이션
 // @override
