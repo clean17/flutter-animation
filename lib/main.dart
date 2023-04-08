@@ -118,7 +118,6 @@ class MyApp extends StatelessWidget {
 //     );
 //   }
 
-
 class MyHome3 extends StatefulWidget {
   const MyHome3({super.key});
 
@@ -153,9 +152,8 @@ class _MyHome3State extends State<MyHome3> with SingleTickerProviderStateMixin {
       backgroundColor: Colors.white,
       body: Center(
         child: RotationTransition(
-          turns: CurvedAnimation(
-              parent: _animationController,
-              curve: Curves.ease),
+          turns:
+              CurvedAnimation(parent: _animationController, curve: Curves.ease),
           child: Container(
             color: Colors.blue,
             width: 100,
@@ -165,24 +163,6 @@ class _MyHome3State extends State<MyHome3> with SingleTickerProviderStateMixin {
       ),
     );
   }
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     backgroundColor: Colors.white,
-  //     body: Center(
-  //       child: RotationTransition(
-  //         turns: CurvedAnimation(
-  //             parent: _animationController,
-  //             curve: Curves.ease),
-  //         child: Container(
-  //           color: Colors.blue,
-  //           width: 100,
-  //           height: 100,
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 }
     // }  @override
     // Widget build(BuildContext context) {
