@@ -11,7 +11,49 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHome3(),
+      home: MyHome4(),
+    );
+  }
+}
+
+class MyHome4 extends StatelessWidget {
+  const MyHome4({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      backgroundColor: Colors.black45,
+      body: Column(
+        children: [
+          Container(
+            clipBehavior: Clip.hardEdge,
+            decoration: const BoxDecoration(
+              color: Colors.lightBlueAccent,
+            ),
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: const [Text("안녕"), Text("20만원")],
+                ),
+                Transform.scale(
+                  scale: 3,
+                  child: Transform.translate(
+                    offset: const Offset(-5, 5),
+                    child: const Icon(
+                      Icons.euro,
+                      color: Colors.white,
+                      size: 40,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -163,66 +205,65 @@ class _MyHome3State extends State<MyHome3> with SingleTickerProviderStateMixin {
       ),
     );
   }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   const double smallLogo = 100;
+  //   const double bigLogo = 200;
+
+  //   return Scaffold(
+  //     backgroundColor: Colors.white,
+  //     body: LayoutBuilder(
+  //       builder: (BuildContext context, BoxConstraints constraints) {
+  //         final Size biggest = constraints.biggest;
+  //         return Stack(
+  //           children: <Widget>[
+  //             PositionedTransition(
+  //               rect: RelativeRectTween(
+  //                 begin: RelativeRect.fromSize(
+  //                     const Rect.fromLTWH(0, 0, smallLogo, smallLogo), biggest),
+  //                 end: RelativeRect.fromSize(
+  //                     Rect.fromLTWH(biggest.width - bigLogo,
+  //                         biggest.height - bigLogo, bigLogo, bigLogo),
+  //                     biggest),
+  //               ).animate(CurvedAnimation(
+  //                 parent: _animationController,
+  //                 curve: Curves.elasticInOut,
+  //               )),
+  //               child: const Padding(
+  //                   padding: EdgeInsets.all(8), child: FlutterLogo()),
+  //             ),
+  //           ],
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   // double screenHeight = MediaQuery.of(context).size.height;
+  //   double screenWidth = MediaQuery.of(context).size.width;
+
+  //   Animation<RelativeRect> _animation = RelativeRectTween(
+  //     begin: RelativeRect.fromLTRB(screenWidth, 0, 0, 0),
+  //     end: RelativeRect.fromLTRB(0, 0, 0, 0),
+  //   ).animate(CurvedAnimation(
+  //     parent: _animationController,
+  //     curve: Curves.elasticInOut,
+  //   ));
+
+  //   return Scaffold(
+  //     body: Stack(
+  //       children: [
+  //         PositionedTransition(
+  //           rect: _animation,
+  //           child: Container(
+  //             color: Colors.blue,
+  //           ),
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 }
-    // }  @override
-    // Widget build(BuildContext context) {
-    //   const double smallLogo = 100;
-    //   const double bigLogo = 200;
-    //
-    //   return Scaffold(
-    //     backgroundColor: Colors.white,
-    //     body: LayoutBuilder(
-    //       builder: (BuildContext context, BoxConstraints constraints) {
-    //         final Size biggest = constraints.biggest;
-    //         return Stack(
-    //           children: <Widget>[
-    //             PositionedTransition(
-    //               rect: RelativeRectTween(
-    //                 begin: RelativeRect.fromSize(
-    //                     const Rect.fromLTWH(0, 0, smallLogo, smallLogo), biggest),
-    //                 end: RelativeRect.fromSize(
-    //                     Rect.fromLTWH(biggest.width - bigLogo,
-    //                         biggest.height - bigLogo, bigLogo, bigLogo),
-    //                     biggest),
-    //               ).animate(CurvedAnimation(
-    //                 parent: _animationController,
-    //                 curve: Curves.elasticInOut,
-    //               )),
-    //               child: const Padding(
-    //                   padding: EdgeInsets.all(8), child: FlutterLogo()),
-    //             ),
-    //           ],
-    //         );
-    //       },
-    //     ),
-    //   );
-    // }
-
-
-
-//   @override
-//   Widget build(BuildContext context) {
-//     // double screenHeight = MediaQuery.of(context).size.height;
-//     double screenWidth = MediaQuery.of(context).size.width;
-//
-//     Animation<RelativeRect> _animation =RelativeRectTween(
-//       begin: RelativeRect.fromLTRB(screenWidth, 0, 0, 0),
-//       end: RelativeRect.fromLTRB(0, 0, 0, 0),
-//     ).animate(CurvedAnimation(
-//       parent: _animationController,
-//       curve: Curves.elasticInOut,
-//     ));
-//
-//     return Scaffold(
-//       body: Stack(
-//           children: [ PositionedTransition(
-//             rect: _animation,
-//             child: Container(
-//               color: Colors.blue,
-//             ),
-//           )
-//           ],
-//       ),
-//     );
-//   }
-// }
