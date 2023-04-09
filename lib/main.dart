@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hrd/widgets/credit_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,35 +25,22 @@ class MyHome4 extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       backgroundColor: Colors.black45,
-      body: Column(
-        children: [
-          Container(
-            clipBehavior: Clip.hardEdge,
-            decoration: const BoxDecoration(
-              color: Colors.lightBlueAccent,
-            ),
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: const [Text("안녕"), Text("20만원")],
-                ),
-                Transform.scale(
-                  scale: 3,
-                  child: Transform.translate(
-                    offset: const Offset(-5, 5),
-                    child: const Icon(
-                      Icons.euro,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Stack(
+          children: const [
+            Positioned(
+                top: 0,
+                child: NewWidget(text: '유로', text2: '유로가격', icon: Icons.euro)),
+            Positioned(
+                top: 200,
+                child:
+                    NewWidget(text: '원화', text2: '원화가격', icon: Icons.woman_2)),
+            Positioned(
+                top: 400,
+                child: NewWidget(
+                    text: '달러', text2: '달러가격', icon: Icons.done_all_sharp)),
+          ],
+        ),
       ),
     );
   }
