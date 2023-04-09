@@ -4,9 +4,17 @@ class NewWidget extends StatelessWidget {
   final String text;
   final String text2;
   final IconData icon;
+  final double xOffset;
+  final double yOffset;
 
-  const NewWidget(
-      {super.key, required this.text, required this.text2, required this.icon});
+  const NewWidget({
+    super.key,
+    required this.text,
+    required this.text2,
+    required this.icon,
+    required this.xOffset,
+    required this.yOffset,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +33,7 @@ class NewWidget extends StatelessWidget {
           Transform.scale(
             scale: 3,
             child: Transform.translate(
-              offset: const Offset(-5, 5),
+              offset: Offset(xOffset, yOffset),
               child: Icon(
                 icon,
                 color: Colors.white.withOpacity(0.9),

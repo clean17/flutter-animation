@@ -23,26 +23,40 @@ class MyHome4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      backgroundColor: Colors.black45,
-      body: SingleChildScrollView(
-        child: Stack(
-          children: const [
-            Positioned(
-                top: 0,
-                child: NewWidget(text: '유로', text2: '유로가격', icon: Icons.euro)),
-            Positioned(
-                top: 200,
-                child:
-                    NewWidget(text: '원화', text2: '원화가격', icon: Icons.woman_2)),
-            Positioned(
-                top: 400,
-                child: NewWidget(
-                    text: '달러', text2: '달러가격', icon: Icons.done_all_sharp)),
+        appBar: AppBar(),
+        backgroundColor: const Color.fromARGB(240, 238, 238, 238),
+        body: SingleChildScrollView(
+            child: Column(
+          children: [
+            const NewWidget(
+              text: '유로',
+              text2: '유로가격',
+              icon: Icons.euro,
+              xOffset: 0,
+              yOffset: 0,
+            ),
+            Transform.translate(
+              offset: const Offset(0, -10),
+              child: const NewWidget(
+                text: '유로11',
+                text2: '유로가격',
+                icon: Icons.euro,
+                xOffset: 0,
+                yOffset: 0,
+              ),
+            ),
+            Transform.translate(
+              offset: const Offset(0, -20),
+              child: const NewWidget(
+                text: '유로22',
+                text2: '유로가격',
+                icon: Icons.euro,
+                xOffset: 0,
+                yOffset: 0,
+              ),
+            )
           ],
-        ),
-      ),
-    );
+        )));
   }
 }
 
