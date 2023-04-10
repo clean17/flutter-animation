@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hrd/widgets/credit_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +17,8 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+final Uri _url = Uri.parse('https://flutter.dev');
 
 class MyHome4 extends StatelessWidget {
   const MyHome4({super.key});
@@ -54,9 +57,21 @@ class MyHome4 extends StatelessWidget {
                 xOffset: 0,
                 yOffset: 0,
               ),
-            )
+            ),
+            const Center(
+              child: ElevatedButton(
+                onPressed: _launchUrl,
+                child: Text('Show Flutter homepage'),
+              ),
+            ),
           ],
         )));
+  }
+}
+
+Future<void> _launchUrl() async {
+  if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');
   }
 }
 
