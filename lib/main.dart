@@ -20,8 +20,28 @@ class MyApp extends StatelessWidget {
 
 final Uri _url = Uri.parse('https://flutter.dev');
 
-class MyHome4 extends StatelessWidget {
+class MyHome4 extends StatefulWidget {
   const MyHome4({super.key});
+
+  @override
+  State<MyHome4> createState() => _MyHome4State();
+}
+
+class _MyHome4State extends State<MyHome4> {
+  bool _hasCallSupport = false;
+  Future<void>? _launched;
+  final String _phone = '전화번호 여기에 입력';
+
+  @override
+  void initState() {
+    super.initState();
+    // Check for phone call support.
+    canLaunchUrl(Uri(scheme: 'tel', path: '123')).then((bool result) {
+      setState(() {
+        _hasCallSupport = result;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +81,19 @@ class MyHome4 extends StatelessWidget {
             const Center(
               child: ElevatedButton(
                 onPressed: _launchUrl,
+                // onPressed: _makePhoneCall("010-2349-9099"),
                 child: Text('Show Flutter homepage'),
               ),
+            ),
+            ElevatedButton(
+              onPressed: _hasCallSupport
+                  ? () => setState(() {
+                        _launched = _makePhoneCall(_phone);
+                      })
+                  : null,
+              child: _hasCallSupport
+                  ? const Text('Make phone call')
+                  : const Text('Calling not supported'),
             ),
           ],
         )));
@@ -73,6 +104,14 @@ Future<void> _launchUrl() async {
   if (!await launchUrl(_url)) {
     throw Exception('Could not launch $_url');
   }
+}
+
+Future<void> _makePhoneCall(String phoneNumber) async {
+  final Uri launchUri = Uri(
+    scheme: 'tel',
+    path: phoneNumber,
+  );
+  await launchUrl(launchUri);
 }
 
 // class MyHome extends StatefulWidget {
